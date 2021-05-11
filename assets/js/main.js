@@ -1,32 +1,28 @@
 // Un alert() espone 5 numeri generati casualmente.
  var randomNumber = [];
- var counter;
- for(counter = 0; counter < 5; counter++){
-    randomNumber.push(Math.floor(Math.random()*100));
-    console.log(randomNumber);
- }
-
- alert(randomNumber);
-
-// Da li parte un timer di 30 secondi.
-// Dopo 30 secondi l'utente deve inserire, 
-// uno alla volta, i numeri che ha visto precedentemente, tramite il prompt().
-var domanda = [];
-var timer = 30;
-var intervallo = setInterval(function (){
-     if(timer == 0){
-         alert("ORA RICORDA");
-         for(var i = 0; i<5; i++){
-            domanda.push(Number(prompt("Ricorda i numeri e inseriscili")));
+ while(randomNumber.length < 5) {
+     var numeroCasuale = Math.ceil(Math.random()*20);
+     if(!randomNumber.includes(numeroCasuale)) {
+        randomNumber.push(numeroCasuale);
         }
+}
+console.log(randomNumber);
 
-         clearInterval(intervallo);
-     }else {
-         timer--;
-     }
-     document.getElementById("secondi").innerHTML = timer;
+alert("Ricordati i seguenti numeri " + randomNumber);
 
- }, 100);
+setTimeout(function () {  
+    var numeriIndovinati = [];
+    for(var i = 0; i < 5; i++) {
+        alert("ora ricorda");
+        var domanda = Number(prompt("Inserisci i numeri"));
+        if(randomNumber.includes(domanda)){
+            numeriIndovinati.push(domanda)
+      
+        }
+    }
+    console.log(numeriIndovinati);
+    alert("hai indovinato " + numeriIndovinati.length + "dei numeri che ti ho mostrato")
+}, 30000)
 
 
 
